@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RK Online Bazaar - Sign Up</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f5f2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+.container {
+  background: white;
+  width: 100%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px #0002;
+}
+h2 {
+  text-align: center;
+  color: #087b38;
+}
+p {
+  text-align: center;
+  color: #666;
+}
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+input, select {
+  width: 100%;
+  padding: 13px;
+  margin-top: 7px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+button {
+  width: 100%;
+  padding: 14px;
+  margin-top: 22px;
+  background: #07853d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 17px;
+  font-weight: bold;
+}
+button:disabled {
+  opacity: .6;
+}
+a {
+  color: #07853d;
+}
+#message {
+  text-align: center;
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>RK Online Bazaar</h2>
+<p>हर सामान आपके घर तक!</p>
+
+<h3>Create Your Account</h3>
+
+<form id="signupForm">
+
+<label>Account Type</label>
+<select id="role" required>
+<option value="">Select Account</option>
+<option value="customer">Customer</option>
+<option value="shopkeeper">Shopkeeper</option>
+</select>
+
+<label>Mobile Number</label>
+<input
+type="tel"
+id="phone"
+placeholder="Enter 10 digit mobile number"
+pattern="[6-9][0-9]{9}"
+maxlength="10"
+required>
+
+<label>Email Address</label>
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required>
+
+<label>Password</label>
+<input
+type="password"
+id="password"
+placeholder="Create password (minimum 8 characters)"
+minlength="8"
+required>
+
+<button type="submit" id="submitBtn">
+SIGN UP
+</button>
+
+</form>
+
+<div id="message"></div>
+
+<p>Already have an account?
+<a href="login.html">Login</a>
+</p>
+
+</div>
+
+<script type="module">
+
+import { createClient } from
+'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+// अपनी Supabase Project Details यहाँ डालनी हैं
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_ANON_KEY";
+
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON_KEY
+);
+
+const form = document.getElementById("signupForm");
+const message = document.getElementById("message");
+const button = document.getElementById("submitBtn");
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const role = document.getElementById("role").value;
+  const phone = document.getElementById("phone").value;
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+
+  button.disabled = true;
+  message.textContent = "Please wait...";
+
+  try {
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          phone: phone,
+          role: role
+        }
+      }
+    });
+
+    if (error) throw error;
+
+    message.textContent =
+      "Registration submitted! Please verify your email.";
+
+    form.reset();
+
+  } catch (error) {
+    message.textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
+});
+
+</script>
+
+</body>
+</html>
