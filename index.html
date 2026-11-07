@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#14532d">
+  <title>RK Online Bazaar | बिहार का ऑनलाइन बाज़ार</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">RK</span><span>RK Online Bazaar<small>बिहार का अपना ऑनलाइन बाज़ार</small></span></a>
+  <button class="cart-button" id="cartButton">कार्ट <span id="cartCount">0</span></button>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">LOCAL SHOPPING • BIHAR</p>
+    <h1>आपके शहर की खरीदारी,<br><em>अब ऑनलाइन।</em></h1>
+    <p>अपने जिले की दुकानों से रोज़मर्रा का सामान आसानी से खोजें।</p>
+    <a class="primary-link" href="#products">खरीदारी शुरू करें</a>
+  </div>
+  <div class="hero-art" aria-hidden="true"><div class="basket">🛍️</div><span>स्थानीय दुकानें</span><b>एक ही जगह</b></div>
+</section>
+
+<main>
+  <section class="location-row">
+    <label for="district">अपना जिला चुनें</label>
+    <select id="district">
+      <option value="">सभी बिहार</option>
+      <option>अररिया</option><option>अरवल</option><option>औरंगाबाद</option><option>बांका</option>
+      <option>बेगूसराय</option><option>भागलपुर</option><option>भोजपुर</option><option>बक्सर</option>
+      <option>दरभंगा</option><option>पूर्वी चंपारण</option><option>गया</option><option>गोपालगंज</option>
+      <option>जमुई</option><option>जहानाबाद</option><option>कैमूर</option><option>कटिहार</option>
+      <option>खगड़िया</option><option>किशनगंज</option><option>लखीसराय</option><option>मधुबनी</option>
+      <option>मुंगेर</option><option>मुजफ्फरपुर</option><option>नालंदा</option><option>नवादा</option>
+      <option>पटना</option><option>पूर्णिया</option><option>रोहतास</option><option>सहरसा</option>
+      <option>समस्तीपुर</option><option>सारण</option><option>शेखपुरा</option><option>शिवहर</option>
+      <option>सीतामढ़ी</option><option>सीवान</option><option>सुपौल</option><option>वैशाली</option>
+      <option>पश्चिमी चंपारण</option>
+    </select>
+    <span class="delivery-note">डिलीवरी उपलब्धता दुकान के क्षेत्र पर निर्भर करेगी।</span>
+  </section>
+
+  <section class="section-head" id="products">
+    <div><p class="eyebrow">EXPLORE</p><h2>लोकप्रिय कैटेगरी</h2></div>
+  </section>
+  <div class="categories" id="categories">
+    <button class="category active" data-category="सभी">✨<span>सभी</span></button>
+    <button class="category" data-category="किराना">🥬<span>किराना</span></button>
+    <button class="category" data-category="फैशन">👕<span>फैशन</span></button>
+    <button class="category" data-category="इलेक्ट्रॉनिक्स">📱<span>इलेक्ट्रॉनिक्स</span></button>
+    <button class="category" data-category="घर और किचन">🏠<span>घर और किचन</span></button>
+    <button class="category" data-category="गिफ्ट">🎁<span>गिफ्ट</span></button>
+    <button class="category" data-category="ब्यूटी">🧴<span>ब्यूटी</span></button>
+  </div>
+
+  <section class="section-head product-heading">
+    <div><p class="eyebrow">LOCAL PICKS</p><h2>दुकान से चुनें</h2></div>
+    <input id="search" type="search" placeholder="सामान खोजें…">
+  </section>
+  <div class="product-grid" id="productGrid"></div>
+
+  <section class="seller-panel" id="seller">
+    <div><p class="eyebrow">SELL WITH US</p><h2>आपकी दुकान भी ऑनलाइन आएगी</h2>
+      <p>बिहार के दुकानदार अपनी दुकान की जानकारी भेज सकते हैं। अभी यह शुरुआती डेमो फॉर्म है।</p></div>
+    <form id="sellerForm">
+      <input name="shop" placeholder="दुकान का नाम" required>
+      <input name="owner" placeholder="मालिक का नाम" required>
+      <input name="phone" placeholder="मोबाइल नंबर" inputmode="numeric" pattern="[0-9]{10}" required>
+      <input name="district" placeholder="जिला" required>
+      <button class="primary-button">रजिस्ट्रेशन अनुरोध भेजें</button>
+      <p id="sellerMessage" class="form-message" aria-live="polite"></p>
+    </form>
+  </section>
+</main>
+
+<footer><strong>RK Online Bazaar</strong><span>बिहार के स्थानीय दुकानदारों को डिजिटल बाज़ार से जोड़ने की पहल।</span><small>यह शुरुआती डेमो है। असली ऑर्डर, भुगतान और लॉगिन अभी चालू नहीं हैं।</small></footer>
+
+<dialog id="cartDialog">
+  <div class="dialog-head"><h2>आपका कार्ट</h2><button id="closeCart" aria-label="बंद करें">✕</button></div>
+  <div id="cartItems"></div>
+  <div class="cart-total">कुल: <strong id="cartTotal">₹0</strong></div>
+  <p class="demo-note">डेमो: अभी चेकआउट और भुगतान सक्रिय नहीं हैं।</p>
+</dialog>
+<script src="script.js"></script>
+</body>
+</html>
