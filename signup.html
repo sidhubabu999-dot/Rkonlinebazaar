@@ -1,73 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RK Online Bazaar - Sign Up</title>
+<title>RK Online Bazaar - Registration</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f2f5f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
   padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
 }
+
 .container {
+  max-width: 450px;
+  margin: 30px auto;
   background: white;
-  width: 100%;
-  max-width: 420px;
   padding: 25px;
   border-radius: 15px;
-  box-shadow: 0 4px 20px #0002;
+  box-shadow: 0 3px 15px #0002;
 }
+
 h2 {
   text-align: center;
-  color: #087b38;
+  color: #087443;
 }
+
 p {
   text-align: center;
-  color: #666;
+  color: #555;
 }
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
-}
-input, select {
-  width: 100%;
-  padding: 13px;
-  margin-top: 7px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
+
 button {
   width: 100%;
-  padding: 14px;
-  margin-top: 22px;
-  background: #07853d;
-  color: white;
+  padding: 13px;
+  margin-top: 12px;
   border: none;
   border-radius: 8px;
-  font-size: 17px;
-  font-weight: bold;
+  background: #087443;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
-button:disabled {
-  opacity: .6;
+
+.shopButton {
+  background: #e88718;
 }
-a {
-  color: #07853d;
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  font-size: 15px;
 }
+
+.form {
+  display: none;
+  margin-top: 20px;
+}
+
+.back {
+  background: #555;
+}
+
 #message {
   text-align: center;
   margin-top: 15px;
+  font-weight: bold;
 }
 </style>
 </head>
@@ -77,111 +85,194 @@ a {
 <div class="container">
 
 <h2>RK Online Bazaar</h2>
-<p>हर सामान आपके घर तक!</p>
 
-<h3>Create Your Account</h3>
+<p>आपके शहर की खरीदारी ऑनलाइन</p>
 
-<form id="signupForm">
+<p>अपने जिले की दुकानों से रोजाना का सामान आसानी से खोजें।</p>
 
-<label>Account Type</label>
-<select id="role" required>
-<option value="">Select Account</option>
-<option value="customer">Customer</option>
-<option value="shopkeeper">Shopkeeper</option>
-</select>
+<h3>आप कौन हैं?</h3>
 
-<label>Mobile Number</label>
-<input
-type="tel"
-id="phone"
-placeholder="Enter 10 digit mobile number"
-pattern="[6-9][0-9]{9}"
-maxlength="10"
-required>
-
-<label>Email Address</label>
-<input
-type="email"
-id="email"
-placeholder="Enter your email"
-required>
-
-<label>Password</label>
-<input
-type="password"
-id="password"
-placeholder="Create password (minimum 8 characters)"
-minlength="8"
-required>
-
-<button type="submit" id="submitBtn">
-SIGN UP
+<button onclick="showForm('customer')">
+Customer Registration / ग्राहक
 </button>
+
+<button class="shopButton" onclick="showForm('shopkeeper')">
+Shopkeeper Registration / दुकानदार
+</button>
+
+
+<!-- CUSTOMER FORM -->
+
+<div id="customerForm" class="form">
+
+<h2>ग्राहक रजिस्ट्रेशन</h2>
+
+<form onsubmit="registerUser(event, 'customer')">
+
+<input id="cname" type="text"
+placeholder="आपका नाम" required>
+
+<input id="cphone" type="tel"
+placeholder="मोबाइल नंबर" required>
+
+<input id="cemail" type="email"
+placeholder="ईमेल" required>
+
+<input id="cpassword" type="password"
+placeholder="पासवर्ड" required minlength="6">
+
+<button type="submit">ग्राहक रजिस्टर करें</button>
 
 </form>
 
-<div id="message"></div>
-
-<p>Already have an account?
-<a href="login.html">Login</a>
-</p>
+<button class="back" onclick="goBack()">वापस जाएँ</button>
 
 </div>
 
-<script type="module">
 
-import { createClient } from
-'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+<!-- SHOPKEEPER FORM -->
 
-// अपनी Supabase Project Details यहाँ डालनी हैं
-const SUPABASE_URL = https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm
-const SUPABASE_ANON_KEY = sb_publishable_3Bo5Qc6cgHCLR068BGMmig_pC0IM43n
+<div id="shopkeeperForm" class="form">
 
-const supabase = createClient(
+<h2>दुकानदार रजिस्ट्रेशन</h2>
+
+<form onsubmit="registerUser(event, 'shopkeeper')">
+
+<input id="shopname" type="text"
+placeholder="दुकान का नाम" required>
+
+<input id="ownername" type="text"
+placeholder="मालिक का नाम" required>
+
+<input id="sphone" type="tel"
+placeholder="मोबाइल नंबर" required>
+
+<input id="whatsapp" type="tel"
+placeholder="WhatsApp नंबर" required>
+
+<input id="semail" type="email"
+placeholder="ईमेल" required>
+
+<input id="spassword" type="password"
+placeholder="पासवर्ड" required minlength="6">
+
+<button type="submit">दुकानदार रजिस्टर करें</button>
+
+</form>
+
+<button class="back" onclick="goBack()">वापस जाएँ</button>
+
+</div>
+
+<div id="message"></div>
+
+</div>
+
+
+<script>
+
+// अपना Supabase Project URL और Publishable Key यहाँ डालें
+
+const SUPABASE_URL = "YOUR_SUPABASE_URL";
+const SUPABASE_ANON_KEY = "YOUR_SUPABASE_PUBLISHABLE_KEY";
+
+const supabaseClient = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
 
-const form = document.getElementById("signupForm");
-const message = document.getElementById("message");
-const button = document.getElementById("submitBtn");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+function showForm(type) {
 
-  const role = document.getElementById("role").value;
-  const phone = document.getElementById("phone").value;
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
+  document.getElementById("customerForm").style.display = "none";
+  document.getElementById("shopkeeperForm").style.display = "none";
 
-  button.disabled = true;
-  message.textContent = "Please wait...";
+  document.getElementById("message").innerText = "";
 
-  try {
-    const { data, error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        data: {
-          phone: phone,
-          role: role
-        }
-      }
-    });
-
-    if (error) throw error;
-
-    message.textContent =
-      "Registration submitted! Please verify your email.";
-
-    form.reset();
-
-  } catch (error) {
-    message.textContent = error.message;
-  } finally {
-    button.disabled = false;
+  if (type === "customer") {
+    document.getElementById("customerForm").style.display = "block";
+  } else {
+    document.getElementById("shopkeeperForm").style.display = "block";
   }
-});
+}
+
+
+function goBack() {
+
+  document.getElementById("customerForm").style.display = "none";
+  document.getElementById("shopkeeperForm").style.display = "none";
+
+  document.getElementById("message").innerText = "";
+}
+
+
+async function registerUser(event, role) {
+
+  event.preventDefault();
+
+  const message = document.getElementById("message");
+
+  let name, phone, email, password, extraData = {};
+
+  if (role === "customer") {
+
+    name = document.getElementById("cname").value.trim();
+    phone = document.getElementById("cphone").value.trim();
+    email = document.getElementById("cemail").value.trim();
+    password = document.getElementById("cpassword").value;
+
+  } else {
+
+    name = document.getElementById("ownername").value.trim();
+    phone = document.getElementById("sphone").value.trim();
+    email = document.getElementById("semail").value.trim();
+    password = document.getElementById("spassword").value;
+
+    extraData = {
+      shop_name: document.getElementById("shopname").value.trim(),
+      whatsapp: document.getElementById("whatsapp").value.trim()
+    };
+  }
+
+  message.style.color = "blue";
+  message.innerText = "रजिस्ट्रेशन हो रहा है...";
+
+  const { data, error } = await supabaseClient.auth.signUp({
+
+    email: email,
+    password: password,
+
+    options: {
+      data: {
+        name: name,
+        phone: phone,
+        role: role,
+        ...extraData
+      }
+    }
+
+  });
+
+  if (error) {
+
+    message.style.color = "red";
+    message.innerText = error.message;
+
+  } else {
+
+    message.style.color = "green";
+
+    if (data.session) {
+      message.innerText = "रजिस्ट्रेशन सफल हुआ!";
+    } else {
+      message.innerText =
+        "रजिस्ट्रेशन हो गया! कृपया अपना ईमेल चेक करके अकाउंट वेरिफाई करें।";
+    }
+
+    event.target.reset();
+  }
+
+}
 
 </script>
 
