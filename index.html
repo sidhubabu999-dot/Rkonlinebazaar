@@ -1,88 +1,102 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#14532d">
-  <title>RK Online Bazaar | बिहार का ऑनलाइन बाज़ार</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101426">
+  <title>RK Online Bazar — Smart Shopping</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#"><span class="brand-mark">RK</span><span>RK Online Bazaar<small>बिहार का अपना ऑनलाइन बाज़ार</small></span></a>
-  <button class="cart-button" id="cartButton">कार्ट <span id="cartCount">0</span></button>
-</header>
+  <div class="announcement">✨ RK Online Bazar में आपका स्वागत है — Demo Store</div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">RK</span><span>RK <b>Online Bazar</b><small>Shopping made simple</small></span></a>
+    <div class="search-wrap"><span>⌕</span><input id="searchInput" type="search" placeholder="सामान खोजें..."></div>
+    <div class="header-actions">
+      <button class="icon-btn" id="sellerOpen" title="Shopkeeper">＋ <span class="desktop-label">सामान जोड़ें</span></button>
+      <button class="cart-btn" id="cartOpen">🛒 <span class="desktop-label">कार्ट</span><b id="cartCount">0</b></button>
+    </div>
+  </header>
 
-<section class="hero">
-  <div class="hero-copy">
-    <p class="eyebrow">LOCAL SHOPPING • BIHAR</p>
-    <h1>आपके शहर की खरीदारी,<br><em>अब ऑनलाइन।</em></h1>
-    <p>अपने जिले की दुकानों से रोज़मर्रा का सामान आसानी से खोजें।</p>
-    <a class="primary-link" href="#products">खरीदारी शुरू करें</a>
-  </div>
-  <div class="hero-art" aria-hidden="true"><div class="basket">🛍️</div><span>स्थानीय दुकानें</span><b>एक ही जगह</b></div>
-</section>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">WELCOME TO RK ONLINE BAZAR</span>
+        <h1>आपकी पसंद,<br><em>आपके घर तक।</em></h1>
+        <p>रोज़मर्रा की ज़रूरतों से लेकर पसंदीदा सामान तक — सब एक ही जगह।</p>
+        <a class="primary-btn" href="#products">अभी खरीदारी करें <span>↗</span></a>
+        <div class="hero-stats"><span><b>Easy</b><small>Shopping</small></span><span><b>Local</b><small>Products</small></span><span><b>Simple</b><small>Ordering</small></span></div>
+      </div>
+      <div class="hero-art" aria-label="Decorative 3D shopping illustration">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="float-card card-a">🎧<small>Electronics</small></div>
+        <div class="float-card card-b">👟<small>Fashion</small></div>
+        <div class="bag-3d"><div class="bag-handle"></div><div class="bag-face"><span>RK</span><small>BAZAR</small></div></div>
+        <div class="shine"></div>
+      </div>
+    </section>
 
-<main>
-  <section class="location-row">
-    <label for="district">अपना जिला चुनें</label>
-    <select id="district">
-      <option value="">सभी बिहार</option>
-      <option>अररिया</option><option>अरवल</option><option>औरंगाबाद</option><option>बांका</option>
-      <option>बेगूसराय</option><option>भागलपुर</option><option>भोजपुर</option><option>बक्सर</option>
-      <option>दरभंगा</option><option>पूर्वी चंपारण</option><option>गया</option><option>गोपालगंज</option>
-      <option>जमुई</option><option>जहानाबाद</option><option>कैमूर</option><option>कटिहार</option>
-      <option>खगड़िया</option><option>किशनगंज</option><option>लखीसराय</option><option>मधुबनी</option>
-      <option>मुंगेर</option><option>मुजफ्फरपुर</option><option>नालंदा</option><option>नवादा</option>
-      <option>पटना</option><option>पूर्णिया</option><option>रोहतास</option><option>सहरसा</option>
-      <option>समस्तीपुर</option><option>सारण</option><option>शेखपुरा</option><option>शिवहर</option>
-      <option>सीतामढ़ी</option><option>सीवान</option><option>सुपौल</option><option>वैशाली</option>
-      <option>पश्चिमी चंपारण</option>
-    </select>
-    <span class="delivery-note">डिलीवरी उपलब्धता दुकान के क्षेत्र पर निर्भर करेगी।</span>
-  </section>
+    <section class="benefits">
+      <div><span>🚚</span><p><b>घर तक डिलीवरी</b><small>डिलीवरी उपलब्धता विक्रेता पर निर्भर</small></p></div>
+      <div><span>🛍️</span><p><b>कई कैटेगरी</b><small>एक जगह पर कई तरह के सामान</small></p></div>
+      <div><span>🤝</span><p><b>लोकल शॉपकीपर</b><small>स्थानीय दुकानदारों के लिए</small></p></div>
+    </section>
 
-  <section class="section-head" id="products">
-    <div><p class="eyebrow">EXPLORE</p><h2>लोकप्रिय कैटेगरी</h2></div>
-  </section>
-  <div class="categories" id="categories">
-    <button class="category active" data-category="सभी">✨<span>सभी</span></button>
-    <button class="category" data-category="किराना">🥬<span>किराना</span></button>
-    <button class="category" data-category="फैशन">👕<span>फैशन</span></button>
-    <button class="category" data-category="इलेक्ट्रॉनिक्स">📱<span>इलेक्ट्रॉनिक्स</span></button>
-    <button class="category" data-category="घर और किचन">🏠<span>घर और किचन</span></button>
-    <button class="category" data-category="गिफ्ट">🎁<span>गिफ्ट</span></button>
-    <button class="category" data-category="ब्यूटी">🧴<span>ब्यूटी</span></button>
-  </div>
+    <section class="section-head" id="products">
+      <div><span class="eyebrow">EXPLORE COLLECTION</span><h2>आज क्या खरीदना है?</h2></div>
+      <span class="product-count" id="productCount">उत्पाद लोड हो रहे हैं...</span>
+    </section>
+    <nav class="categories" id="categories">
+      <button class="active" data-category="सभी">सभी</button>
+      <button data-category="इलेक्ट्रॉनिक्स">📱 इलेक्ट्रॉनिक्स</button>
+      <button data-category="फैशन">👕 फैशन</button>
+      <button data-category="घर">🏠 घर</button>
+      <button data-category="किराना">🥫 किराना</button>
+      <button data-category="अन्य">✨ अन्य</button>
+    </nav>
+    <section class="product-grid" id="productGrid"></section>
 
-  <section class="section-head product-heading">
-    <div><p class="eyebrow">LOCAL PICKS</p><h2>दुकान से चुनें</h2></div>
-    <input id="search" type="search" placeholder="सामान खोजें…">
-  </section>
-  <div class="product-grid" id="productGrid"></div>
+    <section class="seller-banner">
+      <div><span class="eyebrow">FOR LOCAL SHOPKEEPERS</span><h2>अपनी दुकान को ऑनलाइन लाएँ।</h2><p>उत्पाद का नाम, कीमत और फोटो जोड़कर इस डेमो स्टोर में दिखाएँ।</p></div>
+      <button class="primary-btn" id="sellerOpen2">दुकानदार के रूप में जुड़ें ↗</button>
+    </section>
+    <footer><div class="brand"><span class="brand-mark">RK</span><span>RK <b>Online Bazar</b><small>Shopping made simple</small></span></div><p>यह एक शुरुआती डेमो वेबसाइट है। वास्तविक ऑर्डर, लॉगिन और भुगतान के लिए सुरक्षित सर्वर सेटअप ज़रूरी है।</p><small>© 2026 RK Online Bazar</small></footer>
+  </main>
 
-  <section class="seller-panel" id="seller">
-    <div><p class="eyebrow">SELL WITH US</p><h2>आपकी दुकान भी ऑनलाइन आएगी</h2>
-      <p>बिहार के दुकानदार अपनी दुकान की जानकारी भेज सकते हैं। अभी यह शुरुआती डेमो फॉर्म है।</p></div>
-    <form id="sellerForm">
-      <input name="shop" placeholder="दुकान का नाम" required>
-      <input name="owner" placeholder="मालिक का नाम" required>
-      <input name="phone" placeholder="मोबाइल नंबर" inputmode="numeric" pattern="[0-9]{10}" required>
-      <input name="district" placeholder="जिला" required>
-      <button class="primary-button">रजिस्ट्रेशन अनुरोध भेजें</button>
-      <p id="sellerMessage" class="form-message" aria-live="polite"></p>
+  <div class="overlay" id="overlay"></div>
+  <aside class="drawer" id="cartDrawer">
+    <div class="drawer-head"><h3>आपका कार्ट</h3><button class="close-btn" data-close>×</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-bottom"><div class="total-row"><span>कुल राशि</span><b id="cartTotal">₹0</b></div><button class="primary-btn full" id="checkoutBtn">ऑर्डर विवरण भरें</button><small>डेमो: कोई वास्तविक भुगतान नहीं होगा।</small></div>
+  </aside>
+
+  <section class="modal" id="sellerModal">
+    <div class="modal-head"><h3>नया उत्पाद जोड़ें</h3><button class="close-btn" data-close>×</button></div>
+    <form id="sellerForm" class="form">
+      <label>उत्पाद का नाम<input required name="name" placeholder="जैसे: Wireless Headphones"></label>
+      <div class="form-row"><label>कीमत (₹)<input required name="price" type="number" min="1" placeholder="499"></label><label>कैटेगरी<select name="category"><option>इलेक्ट्रॉनिक्स</option><option>फैशन</option><option>घर</option><option>किराना</option><option>अन्य</option></select></label></div>
+      <label>फोटो का URL (वैकल्पिक)<input name="image" type="url" placeholder="https://..."></label>
+      <label>दुकान / विक्रेता का नाम<input name="shop" placeholder="आपकी दुकान"></label>
+      <button class="primary-btn full" type="submit">उत्पाद जोड़ें</button>
+      <small>यह उत्पाद अभी केवल इसी ब्राउज़र में सेव होगा।</small>
     </form>
   </section>
-</main>
 
-<footer><strong>RK Online Bazaar</strong><span>बिहार के स्थानीय दुकानदारों को डिजिटल बाज़ार से जोड़ने की पहल।</span><small>यह शुरुआती डेमो है। असली ऑर्डर, भुगतान और लॉगिन अभी चालू नहीं हैं।</small></footer>
+  <section class="modal" id="checkoutModal">
+    <div class="modal-head"><h3>ऑर्डर विवरण</h3><button class="close-btn" data-close>×</button></div>
+    <form id="checkoutForm" class="form">
+      <label>पूरा नाम<input required name="customer" placeholder="आपका नाम"></label>
+      <label>मोबाइल नंबर<input required name="phone" type="tel" pattern="[0-9]{10}" maxlength="10" placeholder="10 अंकों का मोबाइल नंबर"></label>
+      <label>डिलीवरी का पता<textarea required name="address" rows="3" placeholder="गाँव/मोहल्ला, पोस्ट, जिला, पिन कोड"></textarea></label>
+      <div class="total-row"><span>कुल राशि</span><b id="checkoutTotal">₹0</b></div>
+      <button class="primary-btn full" type="submit">डेमो ऑर्डर कन्फर्म करें</button>
+      <small>यह केवल प्रदर्शन के लिए है। कोई भुगतान या वास्तविक डिलीवरी बुक नहीं होगी।</small>
+    </form>
+  </section>
 
-<dialog id="cartDialog">
-  <div class="dialog-head"><h2>आपका कार्ट</h2><button id="closeCart" aria-label="बंद करें">✕</button></div>
-  <div id="cartItems"></div>
-  <div class="cart-total">कुल: <strong id="cartTotal">₹0</strong></div>
-  <p class="demo-note">डेमो: अभी चेकआउट और भुगतान सक्रिय नहीं हैं।</p>
-</dialog>
-<script src="script.js"></script>
+  <section class="modal" id="successModal">
+    <div class="success-icon">✓</div><h3>डेमो ऑर्डर बन गया!</h3><p id="successText">आपका ऑर्डर इस डिवाइस में सेव हुआ है।</p><button class="primary-btn full" data-close>ठीक है</button>
+  </section>
+  <script src="app.js"></script>
 </body>
 </html>
